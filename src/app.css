@@ -7,38 +7,57 @@
 
 :root,
 :root[data-theme="dark"] {
-  /* Surface */
-  --bg-base:       #0d1117;
-  --bg-surface:    #161b22;
-  --bg-raised:     #21262d;
-  --bg-overlay:    #2d333b;
+  /* Surfaces & Backgrounds */
+  --bg-base:             #0d1117;
+  --bg-surface:          #161b22;
+  --bg-raised:           #21262d;
+  --bg-overlay:          #2d333b;
+  --bg-canvas:           #090d16;
+  --bg-app:              #0b0f19;
+  --bg-surface-elevated: #1a202c;
+  --bg-card-header:      #1a212d;
+  --bg-gauge-dial:       #0b0f19;
+  --bg-digital-meter:    #090b0e;
+  --bg-annunciator:       #0f1217;
+  --bg-annunciator-window: #171b22;
 
-  /* Borders */
-  --border-subtle: #30363d;
-  --border-default: #484f58;
+  /* Borders & Dividers */
+  --border-subtle:       #30363d;
+  --border-default:      #484f58;
+  --border-strong:       #64748b;
 
-  /* Text */
-  --text-primary:   #e6edf3;
-  --text-secondary: #8b949e;
-  --text-muted:     #6e7681;
+  /* Typography */
+  --text-primary:        #e6edf3;
+  --text-secondary:      #8b949e;
+  --text-muted:          #6e7681;
+  --color-text-primary:  #e6edf3;
+  --color-text-secondary:#8b949e;
+  --color-text-muted:    #6e7681;
 
-  /* Status colors — clear hierarchy, no decorative gradients */
-  --status-normal:    #3fb950;
-  --status-warning:   #d29922;
-  --status-critical:  #f85149;
-  --status-offline:   #6e7681;
-  --status-connecting: #58a6ff;
+  /* Primary & Sensor Accent */
+  --color-primary:       #38bdf8;
+  --color-primary-subtle: rgba(56, 189, 248, 0.15);
+  --color-temp:          #58a6ff;
+  --color-pressure:      #bc8cff;
+  --color-state:         #3fb950;
 
-  /* Status backgrounds (12% opacity) */
-  --status-normal-bg:   rgba(63,185,80,.12);
-  --status-warning-bg:  rgba(210,153,34,.12);
-  --status-critical-bg: rgba(248,81,73,.12);
-  --status-offline-bg:  rgba(110,118,129,.12);
+  /* Status Colors */
+  --status-normal:       #3fb950;
+  --status-online:       #3fb950;
+  --status-warning:      #d29922;
+  --status-critical:     #f85149;
+  --status-offline:      #6e7681;
+  --status-connecting:   #58a6ff;
 
-  /* Sensor accent */
-  --color-temp:     #58a6ff;
-  --color-pressure: #bc8cff;
-  --color-state:    #3fb950;
+  /* Status Backgrounds (12% Opacity) */
+  --status-normal-bg:    rgba(63, 185, 80, 0.12);
+  --status-warning-bg:   rgba(210, 153, 34, 0.12);
+  --status-critical-bg:  rgba(248, 81, 73, 0.12);
+  --status-offline-bg:   rgba(110, 118, 129, 0.12);
+
+  /* Elevation Shadows */
+  --shadow-card:         0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-sm:           0 1px 3px rgba(0, 0, 0, 0.3);
 
   /* Layout */
   --sidebar-width: 220px;
@@ -47,47 +66,104 @@
   --radius-md: 8px;
   --radius-lg: 12px;
 
-  /* Typography */
+  /* Typography Sizes */
+  --font-xs: 10px;
+  --font-sm: 12px;
+  --font-md: 14px;
+  --font-lg: 16px;
+  --font-xl: 20px;
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
+  /* Spacing */
+  --space-xs: 6px;
+  --space-sm: 10px;
+  --space-md: 16px;
+  --space-lg: 24px;
+
   /* Transitions */
   --ease-default: 150ms ease;
+  --transition-fast: 150ms ease;
 }
 
 :root[data-theme="light"] {
   /* Surfaces & Backgrounds */
-  --bg-base:       #f8fafc;
-  --bg-surface:    #ffffff;
-  --bg-raised:     #f1f5f9;
-  --bg-overlay:    #e2e8f0;
+  --bg-base:             #f8fafc;
+  --bg-surface:          #ffffff;
+  --bg-raised:           #f1f5f9;
+  --bg-overlay:          #e2e8f0;
+  --bg-canvas:           #f8fafc;
+  --bg-app:              #f1f5f9;
+  --bg-surface-elevated: #ffffff;
+  --bg-card-header:      #f8fafc;
+  --bg-gauge-dial:       #f1f5f9;
+  --bg-digital-meter:    #f8fafc;
+  --bg-annunciator:       #f1f5f9;
+  --bg-annunciator-window: #ffffff;
 
   /* Borders & Dividers */
-  --border-subtle: #e2e8f0;
-  --border-default: #cbd5e1;
+  --border-subtle:       #e2e8f0;
+  --border-default:      #cbd5e1;
+  --border-strong:       #94a3b8;
 
   /* Typography */
-  --text-primary:   #0f172a;
-  --text-secondary: #475569;
-  --text-muted:     #94a3b8;
+  --text-primary:        #0f172a;
+  --text-secondary:      #475569;
+  --text-muted:          #64748b;
+  --color-text-primary:  #0f172a;
+  --color-text-secondary:#475569;
+  --color-text-muted:    #64748b;
 
-  /* Status colors */
-  --status-normal:    #059669;
-  --status-warning:   #d97706;
-  --status-critical:  #dc2626;
-  --status-offline:   #64748b;
-  --status-connecting: #2563eb;
+  /* Primary & Sensor Accent */
+  --color-primary:       #0284c7;
+  --color-primary-subtle: rgba(2, 132, 199, 0.12);
+  --color-temp:          #2563eb;
+  --color-pressure:      #7c3aed;
+  --color-state:         #059669;
 
-  /* Status backgrounds */
-  --status-normal-bg:   rgba(5, 150, 105, 0.12);
-  --status-warning-bg:  rgba(217, 119, 6, 0.12);
-  --status-critical-bg: rgba(220, 38, 38, 0.12);
-  --status-offline-bg:  rgba(100, 116, 139, 0.12);
+  /* Status Colors */
+  --status-normal:       #059669;
+  --status-online:       #059669;
+  --status-warning:      #d97706;
+  --status-critical:     #dc2626;
+  --status-offline:      #64748b;
+  --status-connecting:   #2563eb;
 
-  /* Sensor accent */
-  --color-temp:     #2563eb;
-  --color-pressure: #7c3aed;
-  --color-state:    #059669;
+  /* Status Backgrounds */
+  --status-normal-bg:    rgba(5, 150, 105, 0.12);
+  --status-warning-bg:   rgba(217, 119, 6, 0.12);
+  --status-critical-bg:  rgba(220, 38, 38, 0.12);
+  --status-offline-bg:   rgba(100, 116, 139, 0.12);
+
+  /* Elevation Shadows */
+  --shadow-card:         0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-sm:           0 1px 2px rgba(0, 0, 0, 0.05);
+
+  /* Layout */
+  --sidebar-width: 220px;
+  --topbar-height: 56px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Typography Sizes */
+  --font-xs: 10px;
+  --font-sm: 12px;
+  --font-md: 14px;
+  --font-lg: 16px;
+  --font-xl: 20px;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Spacing */
+  --space-xs: 6px;
+  --space-sm: 10px;
+  --space-md: 16px;
+  --space-lg: 24px;
+
+  /* Transitions */
+  --ease-default: 150ms ease;
+  --transition-fast: 150ms ease;
 }
 
 /* ── Reset ──────────────────────────────────────────────────────────────── */

@@ -199,4 +199,42 @@
     background: #2b3445;
     color: #fff;
   }
+
+  /* ═══ Light Theme Industrial Instrument Styling ═══ */
+  :global([data-theme="light"]) .meter-bezel {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: 2px solid #94a3b8;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  :global([data-theme="light"]) .bezel-screw {
+    background: #94a3b8;
+    box-shadow: inset 0 1px 1px #ffffff, 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  :global([data-theme="light"]) .meter-screen {
+    background: #0b0f19;
+    border: 1px solid #1e293b;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+  }
+
+  :global([data-theme="light"]) .meter-label {
+    color: #94a3b8;
+  }
+
+  :global([data-theme="light"]) .meter-footer {
+    color: #8fa0b5;
+    border-top: 1px solid #1e293b;
+  }
+
+  :global([data-theme="light"]) .peak-reset-btn {
+    background: #1e293b;
+    color: #cbd5e1;
+    border-color: #334155;
+  }
+
+  :global([data-theme="light"]) .peak-reset-btn:hover {
+    background: #334155;
+    color: #ffffff;
+  }
 </style>

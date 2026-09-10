@@ -174,4 +174,27 @@
     opacity: 0.5;
     pointer-events: none;
   }
+
+  /* ═══ Light Theme Styling ═══ */
+  :global([data-theme="light"]) .knob-bezel {
+    background: linear-gradient(145deg, #f8fafc 0%, #cbd5e1 100%);
+    border: 3px solid #94a3b8;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12), inset 0 2px 3px rgba(255, 255, 255, 0.9);
+  }
+
+  :global([data-theme="light"]) .knob-handle {
+    background: radial-gradient(circle, #e2e8f0 40%, #cbd5e1 100%);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
+
+  :global([data-theme="light"]) .knob-pointer {
+    background: #0f172a;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  }
+
+  :global([data-theme="light"]) .pos-tag--active {
+    color: var(--color-primary);
+    text-shadow: none;
+    font-weight: 800;
+  }
 </style>

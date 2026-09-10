@@ -188,7 +188,7 @@
     right: -2px;
     height: 2px;
     background: #ffffff;
-    box-shadow: 0 0 4px #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 0 4px rgba(255, 255, 255, 0.8);
     z-index: 2;
   }
 
@@ -239,6 +239,12 @@
     padding: 3px;
     border-radius: 2px;
     cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .pid-mode-btn:hover {
+    background: var(--bg-overlay);
+    color: var(--color-text-primary);
   }
 
   .pid-mode-btn--active {

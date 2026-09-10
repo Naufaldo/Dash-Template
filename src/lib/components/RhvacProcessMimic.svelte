@@ -259,6 +259,10 @@
   .mode-pill--defrost { background: #331a00; color: #ffab00; border: 1px solid #e69500; }
   .mode-pill--standby { background: #1a202c; color: #a0aec0; border: 1px solid #4a5568; }
 
+  :global([data-theme="light"]) .mode-pill--cooling { background: #ecfdf5; color: #059669; border-color: #a7f3d0; }
+  :global([data-theme="light"]) .mode-pill--defrost { background: #fffbeb; color: #d97706; border-color: #fde68a; }
+  :global([data-theme="light"]) .mode-pill--standby { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
+
   .mimic-svg {
     width: 100%;
     height: auto;

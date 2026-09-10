@@ -64,11 +64,11 @@
 
 <style>
   .annunciator-panel {
-    background: #0f1217;
-    border: 2px solid #2e3440;
+    background: var(--bg-annunciator, #0f1217);
+    border: 2px solid var(--border-default, #2e3440);
     border-radius: 6px;
     padding: 8px;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.6);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
   }
 
   .annunciator-grid {
@@ -84,8 +84,8 @@
   }
 
   .alarm-window {
-    background: #171b22;
-    border: 1px solid #282f3d;
+    background: var(--bg-annunciator-window, #171b22);
+    border: 1px solid var(--border-subtle, #282f3d);
     border-radius: 3px;
     padding: 6px;
     min-height: 48px;
@@ -99,7 +99,7 @@
     font-size: 8px;
     font-weight: 800;
     font-family: var(--font-mono);
-    color: #4a5568;
+    color: var(--text-muted, #8b949e);
     letter-spacing: 0.05em;
   }
 
@@ -107,7 +107,7 @@
     font-size: 9px;
     font-weight: 700;
     line-height: 1.15;
-    color: #4a5568;
+    color: var(--text-secondary, #8b949e);
     text-transform: uppercase;
   }
 
@@ -141,34 +141,78 @@
     gap: 6px;
     margin-top: 8px;
     padding-top: 6px;
-    border-top: 1px solid #1f2530;
+    border-top: 1px solid var(--border-subtle, #1f2530);
   }
 
   .annun-btn {
-    background: #1a202c;
-    border: 1px solid #323b4b;
-    color: #a0aec0;
+    background: var(--bg-surface, #1a202c);
+    border: 1px solid var(--border-default, #323b4b);
+    color: var(--text-secondary, #a0aec0);
     font-size: 9px;
     font-weight: 800;
     padding: 3px 8px;
     border-radius: 3px;
     cursor: pointer;
     font-family: var(--font-mono);
+    transition: all 0.15s ease;
   }
 
   .annun-btn:hover {
-    background: #2d3748;
-    color: #fff;
+    background: var(--bg-overlay, #2d3748);
+    color: var(--text-primary, #fff);
   }
 
   .annun-btn--ack {
-    background: #003314;
-    border-color: #008833;
-    color: #00e676;
+    background: rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.4);
+    color: var(--status-normal, #00e676);
   }
 
   .annun-btn--active {
     background: var(--status-warning);
     color: #000;
+  }
+
+  /* ═══ Light Theme Overrides ═══ */
+  :global([data-theme="light"]) .alarm-window {
+    background: #ffffff;
+    border-color: #cbd5e1;
+  }
+  :global([data-theme="light"]) .alarm-tag {
+    color: #64748b;
+  }
+  :global([data-theme="light"]) .alarm-text {
+    color: #334155;
+  }
+  :global([data-theme="light"]) .window--lit {
+    background: #fee2e2;
+    border-color: #ef4444;
+  }
+  :global([data-theme="light"]) .window--lit .alarm-tag {
+    color: #dc2626;
+  }
+  :global([data-theme="light"]) .window--lit .alarm-text {
+    color: #991b1b;
+    text-shadow: none;
+  }
+  :global([data-theme="light"]) .window--lit.priority--high {
+    background: #fef3c7;
+    border-color: #f59e0b;
+  }
+  :global([data-theme="light"]) .window--lit.priority--high .alarm-tag {
+    color: #d97706;
+  }
+  :global([data-theme="light"]) .window--lit.priority--high .alarm-text {
+    color: #92400e;
+    text-shadow: none;
+  }
+  :global([data-theme="light"]) .annun-btn {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #334155;
+  }
+  :global([data-theme="light"]) .annun-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
   }
 </style>

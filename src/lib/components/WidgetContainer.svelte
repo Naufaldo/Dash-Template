@@ -32,7 +32,7 @@
     </div>
 
     <!-- Size selector controls -->
-    <div class="size-controls" role="group" aria-label={$t.resizeWidget ?? 'Resize Widget'}>
+    <div class="size-controls" role="group" aria-label="Resize Widget">
       <button
         type="button"
         class="size-btn"

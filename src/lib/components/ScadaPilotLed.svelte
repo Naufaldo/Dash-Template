@@ -72,7 +72,7 @@
       </defs>
 
       <!-- Outer Bezel Ring -->
-      <circle cx="12" cy="12" r="11" fill="url(#pilot-bezel-{state})" stroke="var(--bg-app, #0f172a)" stroke-width="1" />
+      <circle cx="12" cy="12" r="11" fill="url(#pilot-bezel-{state})" stroke="var(--border-default, #30363d)" stroke-width="1" />
 
       <!-- Inner Recess -->
       <circle cx="12" cy="12" r="8.5" fill="var(--bg-app, #0b0f19)" />

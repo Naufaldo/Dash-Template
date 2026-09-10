@@ -98,15 +98,15 @@
 
       <!-- Scale ticks (0, 25, 50, 75, 100) on left -->
       <line x1="18" y1="20" x2="25" y2="20" stroke="var(--color-text-secondary)" stroke-width="1" />
-      <text x="5" y="23" font-size="7" fill="var(--color-text-secondary)">100</text>
+      <text x="5" y="23" font-size="7" font-family="var(--font-mono)" fill="var(--color-text-secondary)">100</text>
 
       <line x1="20" y1="57.5" x2="25" y2="57.5" stroke="var(--color-text-secondary)" stroke-width="0.8" opacity="0.6" />
       <line x1="18" y1="95" x2="25" y2="95" stroke="var(--color-text-secondary)" stroke-width="1" />
-      <text x="8" y="98" font-size="7" fill="var(--color-text-secondary)">50</text>
+      <text x="8" y="98" font-size="7" font-family="var(--font-mono)" fill="var(--color-text-secondary)">50</text>
 
       <line x1="20" y1="132.5" x2="25" y2="132.5" stroke="var(--color-text-secondary)" stroke-width="0.8" opacity="0.6" />
       <line x1="18" y1="170" x2="25" y2="170" stroke="var(--color-text-secondary)" stroke-width="1" />
-      <text x="12" y="173" font-size="7" fill="var(--color-text-secondary)">0</text>
+      <text x="12" y="173" font-size="7" font-family="var(--font-mono)" fill="var(--color-text-secondary)">0</text>
     </svg>
   </div>
 
