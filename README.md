@@ -1,30 +1,28 @@
-# Bare Industrial SCADA & Node-RED IoT Dashboard Template
+# 🎛️ Bare Industrial SCADA & Node-RED IoT Dashboard Template
 
-> **A modern, modular, production-ready starter template for building Industrial SCADA, IoT, and HMI telemetry dashboards.**  
-> Built with **SvelteKit 2**, **Vite 6**, and **TypeScript**, with zero heavy external charting dependencies.
+[![SvelteKit 2](https://img.shields.io/badge/SvelteKit-2-FF3E00?logo=svelte&logoColor=white)](https://kit.svelte.dev/)
+[![Vite 6](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TypeScript 5](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Docker Ready](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![License MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+> **A modern, modular, production-grade starter template for building Industrial SCADA, IoT, and HMI telemetry dashboards.**  
+> Engineered with zero external charting bloat, pure SVG Node-RED style radial gauges, industrial pilot lamps, live synoptic process mimics, and bilingual support.
 
 ---
 
-## ⚡ Key Features
+## ⚡ Key Highlights & Features
 
-1. **Node-RED `ui_gauge` Style Radial Arc Gauges** (`ScadaGauge.svelte`):
-   - 240° radial sweep arc with dynamic needle, setpoint (SP) notch marker, warning/trip color zones, and monospace digital readout.
-2. **Industrial Annunciator Pilot LED Lamps** (`ScadaPilotLed.svelte`):
-   - Metallic bezel and jewel reflections for `RUN`, `AUX`, `WARN`, `TRIP`, `COMM`, and `OFF`.
-3. **Mini Sparkline Trend Charts** (`ScadaSparkline.svelte`):
-   - Pure SVG 14-point rolling trajectory with min/max bounds and slope indicators.
-4. **Interactive Synoptic Process Mimics** (`SynopticMimic.svelte`):
-   - Animated process piping flow, equipment status, and live sensor callouts.
-5. **Reorderable Dashboard Grid**:
-   - Native HTML5 Drag-and-Drop and accessible shift buttons (`←` `→`) with `localStorage` persistence.
-6. **Bilingual Localization (ID / EN)**:
-   - Indonesian default + instant toggle to English.
-7. **Optional Light & Dark Themes**:
-   - WCAG AAA/AA contrast tokens adhering to industrial HMI standards.
-8. **Built-in Mock Telemetry Simulation**:
-   - Works immediately out-of-the-box with realistic sensor jitter every 4 seconds.
-9. **Universal Equipment Faceplates** (`DeviceFaceplate.svelte`):
-   - Can represent any industrial machine: refrigeration, cold storage, chillers, pumps, HVAC, compressors, AHUs, boilers, or energy meters.
+- 🎯 **Node-RED `ui_gauge` Style Radial Arc Gauges**: 240° sweep arc with Setpoint (SP) notch, dynamic needle pointer, alarm zone color fills, and tabular monospace readouts.
+- 💡 **Industrial Annunciator Pilot LED Lamps**: Heavy-duty metallic bezel indicator lamps (`RUN`, `AUX`, `WARN`, `TRIP`, `COMM`, `OFF`) with jewel lens reflections.
+- 📈 **Pure SVG Rolling Sparklines**: 14-point mini trends with min/max boundary indicators and delta slope calculation.
+- 🎚️ **Compact Graphic Level Bars**: Horizontal level bars with high/low limit thresholds.
+- 🔄 **Interactive Synoptic Process Mimic**: Dynamic SVG piping diagrams with animated fluid flow lines and live callouts.
+- 🔀 **Reorderable Grid**: Drag-and-drop or shift buttons (`←` `→`) with automatic `localStorage` persistence.
+- 🌐 **Bilingual (Indonesian & English)**: Native Indonesian default with immediate English toggle.
+- 🌓 **Industrial SCADA Dark & Light Themes**: High-contrast, WCAG AAA/AA compliant color tokens with zero flash-of-unauthenticated-theme (FOUC).
+- 🎲 **Built-in Mock Simulation Engine**: Runs out-of-the-box with realistic telemetry jitter every 4 seconds.
+- 🐳 **Production Docker & Multi-stage Build**: Ready for immediate VPS or on-premise industrial IPC deployment.
 
 ---
 
@@ -41,23 +39,23 @@ pnpm install
 ```bash
 pnpm dev
 ```
-Visit `http://localhost:5173` in your browser.
+Visit **`http://localhost:5173`** in your browser.
 
 ---
 
-## 📦 Production Build & Docker
+## 🐳 Docker Deployment
 
-### Standalone Node Server Build
-```bash
-pnpm build
-node build
-```
-
-### Docker Deployment
+### Single-command Docker Compose:
 ```bash
 docker compose up -d --build
 ```
-Accessible on port `3000` (or configured `PORT`).
+The dashboard will be available at `http://localhost:3000`.
+
+### Manual Docker Build:
+```bash
+docker build -t scada-dashboard:latest .
+docker run -d -p 3000:3000 --name scada-dashboard scada-dashboard:latest
+```
 
 ---
 
@@ -65,11 +63,19 @@ Accessible on port `3000` (or configured `PORT`).
 
 ```text
 Dash-Template/
+├── .agents/                       # AI Agent Skills & Governance Constitution
+│   ├── rules/                     # Anti-slop, ponytail, open-design, archify rules
+│   └── skills/                    # Specialized on-demand agent skills
+├── docs/                          # In-depth Engineering Guides
+│   ├── ARCHITECTURE.md            # Topology, data flows, reactive store design
+│   ├── WIDGET_CATALOG.md          # Component API, props, and code snippets
+│   ├── HARDWARE_INTEGRATION.md    # Connecting real MQTT, WebSockets, & Modbus
+│   └── LOCALIZATION_AND_THEMES.md # Adding languages and custom theme tokens
 ├── src/
 │   ├── app.css                    # Industrial SCADA Design Tokens (Light/Dark)
 │   ├── app.html                   # HTML template with zero-FOUC theme script
 │   ├── lib/
-│   │   ├── components/            # SCADA Gauges, Pilot LEDs, Sparklines, Mimics, Faceplates
+│   │   ├── components/            # SCADA Gauges, Pilot LEDs, Sparklines, Faceplates
 │   │   │   ├── DeviceFaceplate.svelte
 │   │   │   ├── GraphicBar.svelte
 │   │   │   ├── MetricValue.svelte
@@ -78,7 +84,7 @@ Dash-Template/
 │   │   │   ├── ScadaSparkline.svelte
 │   │   │   ├── StatusBadge.svelte
 │   │   │   └── SynopticMimic.svelte
-│   │   ├── stores/                # Localization (ID/EN), Theme, & Device Store
+│   │   ├── stores/                # Localization (ID/EN), Theme, & Device Stores
 │   │   │   ├── devices.ts
 │   │   │   ├── locale.ts
 │   │   │   └── theme.ts
@@ -90,33 +96,44 @@ Dash-Template/
 │       └── devices/
 │           └── [deviceId]/
 │               └── +page.svelte
-├── Dockerfile                     # Standalone Node container
-├── docker-compose.yml             # Single-command deployment
-├── DESIGN.md                      # Visual styling & design token contract
+├── AGENTS.md                      # Unified Agent Governance Constitution
+├── CHANGELOG.md                   # Keep a Changelog 1.1.0 release history
+├── DESIGN.md                      # OpenDesign visual styling contract
+├── Dockerfile                     # Multi-stage production container
+├── docker-compose.yml             # Single-command container deployment
+├── LICENSE                        # MIT Open Source License
 └── package.json
 ```
 
 ---
 
-## 🔌 Connecting to Real Hardware (MQTT / WebSockets / REST)
+## 🔌 Connecting to Real Hardware
 
-To replace the built-in simulation generator with real hardware telemetry:
-1. Open `src/lib/stores/devices.ts`.
-2. Connect your MQTT client (e.g. `mqtt.js` or native WebSocket) inside `initializeSimulation()`.
-3. Dispatch incoming payloads into the `deviceList` or `deviceMap` store.
+See [docs/HARDWARE_INTEGRATION.md](docs/HARDWARE_INTEGRATION.md) for full instructions.
 
 ```typescript
 import mqtt from 'mqtt';
+import { deviceList } from '$lib/stores/devices';
 
-const client = mqtt.connect('ws://broker.hivemq.com:8000/mqtt');
+const client = mqtt.connect('ws://broker.lan:9001');
 client.on('message', (topic, payload) => {
   const data = JSON.parse(payload.toString());
-  // Update your Svelte store:
-  deviceStore.updateDevice(data.deviceId, data);
+  // Push real telemetry into the reactive Svelte store:
+  deviceList.update((devices) => {
+    const idx = devices.findIndex((d) => d.id === data.id);
+    if (idx !== -1) devices[idx] = { ...devices[idx], ...data };
+    return [...devices];
+  });
 });
 ```
 
 ---
 
+## 🤖 Agent Governance & Constitution
+
+This template embeds the **Seven Pillars of Agent Governance** (`AGENTS.md`) to ensure that AI agents working on this codebase never introduce low-quality slop, maintain strict design token adherence, write clean idiomatic code, and follow atomic git workflows.
+
+---
+
 ## 📄 License
-MIT License. Free to use for personal, academic, or commercial IoT projects.
+MIT License. Free to use for personal, industrial, or commercial applications.
