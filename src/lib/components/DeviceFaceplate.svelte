@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import { base } from '$app/paths';
   import type { DeviceTelemetry } from '$lib/types/iot';
   import { t } from '$lib/stores/locale';
   import StatusBadge from './StatusBadge.svelte';
@@ -33,7 +34,7 @@
       </div>
     {/if}
 
-    <a href="/devices/{device.id}" class="tag-box">
+    <a href="{base}/devices/{device.id}" class="tag-box">
       <div class="tag-row">
         <span class="device-name">{device.name}</span>
         <span class="tag-badge">{device.tag}</span>
@@ -126,7 +127,7 @@
           <button type="button" class="arrow-btn" disabled={isLast} on:click={() => dispatch('moveRight', device)}>→</button>
         </div>
       {/if}
-      <a href="/devices/{device.id}" class="detail-link">{$t.detailLink}</a>
+      <a href="{base}/devices/{device.id}" class="detail-link">{$t.detailLink}</a>
     </div>
   </div>
 </div>

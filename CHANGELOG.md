@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.2] - 2026-09-10
+
+### Fixed
+- **SvelteKit Prerender Base Path Resolution**:
+  - Imported `base` from `$app/paths` across all internal navigation links (`src/routes/+layout.svelte`, `src/routes/+page.svelte`, `src/lib/components/DeviceFaceplate.svelte`, `src/routes/devices/[deviceId]/+page.svelte`), resolving SvelteKit `404 / does not begin with base` prerendering failure when building for GitHub Pages with non-root `BASE_PATH=/Dash-Template`.
+  - Added `entries()` generator in `src/routes/devices/[deviceId]/+page.ts` to statically prerender all IoT device telemetry faceplates (`DEV-01` through `DEV-04`).
+  - Configured `handleUnseenRoutes: 'warn'` and `handleMissingId: 'warn'` in `svelte.config.js` to ensure resilient CI builds under static adapter crawling.
+
 ## [1.2.1] - 2026-09-10
 
 ### Added

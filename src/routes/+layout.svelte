@@ -5,6 +5,7 @@
   import { themeStore } from '$lib/stores/theme';
   import { layoutStore } from '$lib/stores/layout';
   import { page } from '$app/stores';
+  import { base } from '$app/paths';
 
   onMount(() => {
     localeStore.init();
@@ -16,7 +17,7 @@
 <div class="app-layout">
   <header class="topbar">
     <div class="topbar__left">
-      <a href="/" class="brand">
+      <a href="{base}/" class="brand">
         <span class="brand__icon">⚡</span>
         <div>
           <span class="brand__title">{$t.brand}</span>
@@ -26,19 +27,19 @@
 
       <!-- Navigation Tabs -->
       <nav class="nav-tabs" aria-label="Main Navigation">
-        <a href="/" class="nav-tab" class:nav-tab--active={$page.url.pathname === '/'}>
+        <a href="{base}/" class="nav-tab" class:nav-tab--active={$page.url.pathname === base || $page.url.pathname === `${base}/` || $page.url.pathname === '/'}>
           🏠 {$t.navHome}
         </a>
-        <a href="/dashboard" class="nav-tab" class:nav-tab--active={$page.url.pathname.startsWith('/dashboard')}>
+        <a href="{base}/dashboard" class="nav-tab" class:nav-tab--active={$page.url.pathname.startsWith(`${base}/dashboard`) || $page.url.pathname.startsWith('/dashboard')}>
           📊 {$t.navDashboard}
         </a>
-        <a href="/rhvac" class="nav-tab" class:nav-tab--active={$page.url.pathname.startsWith('/rhvac')}>
+        <a href="{base}/rhvac" class="nav-tab" class:nav-tab--active={$page.url.pathname.startsWith(`${base}/rhvac`) || $page.url.pathname.startsWith('/rhvac')}>
           ❄️ {$t.navRhvac}
         </a>
-        <a href="/widgets" class="nav-tab" class:nav-tab--active={$page.url.pathname.startsWith('/widgets')}>
+        <a href="{base}/widgets" class="nav-tab" class:nav-tab--active={$page.url.pathname.startsWith(`${base}/widgets`) || $page.url.pathname.startsWith('/widgets')}>
           🎛️ {$t.navWidgets}
         </a>
-        <a href="/#docs" class="nav-tab">
+        <a href="{base}/#docs" class="nav-tab">
           📖 {$t.navDocs}
         </a>
       </nav>

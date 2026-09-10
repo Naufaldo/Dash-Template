@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { base } from '$app/paths';
   import { t } from '$lib/stores/locale';
   import ScadaGauge from '$lib/components/ScadaGauge.svelte';
   import ScadaTankLevel from '$lib/components/ScadaTankLevel.svelte';
@@ -140,7 +141,7 @@
 
     <!-- Prominent Action CTAs -->
     <div class="hero-actions">
-      <a href="/dashboard" class="btn btn--primary">
+      <a href="{base}/dashboard" class="btn btn--primary">
         📊 {$t.landing.btnDashboard}
       </a>
       <a href="#demo" class="btn btn--secondary">
@@ -581,7 +582,7 @@
 
     <!-- Quick Launch Cards -->
     <div class="launch-cards-grid">
-      <a href="/dashboard" class="launch-card">
+      <a href="{base}/dashboard" class="launch-card">
         <div class="launch-card__icon">📊</div>
         <div class="launch-card__content">
           <h4 class="launch-card__title">Master SCADA Dashboard →</h4>
@@ -589,7 +590,7 @@
         </div>
       </a>
 
-      <a href="/rhvac" class="launch-card">
+      <a href="{base}/rhvac" class="launch-card">
         <div class="launch-card__icon">❄️</div>
         <div class="launch-card__content">
           <h4 class="launch-card__title">RHVAC P&ID Refrigeration System →</h4>
@@ -597,7 +598,7 @@
         </div>
       </a>
 
-      <a href="/widgets" class="launch-card">
+      <a href="{base}/widgets" class="launch-card">
         <div class="launch-card__icon">🎛️</div>
         <div class="launch-card__content">
           <h4 class="launch-card__title">Complete Widget Reference Catalog →</h4>
@@ -971,9 +972,9 @@ client.on('message', (topic, payload) => &#123;
       </div>
 
       <div class="footer-links">
-        <a href="/dashboard">Dashboard Utama</a>
-        <a href="/rhvac">Desain RHVAC</a>
-        <a href="/widgets">Katalog Widget</a>
+        <a href="{base}/dashboard">Dashboard Utama</a>
+        <a href="{base}/rhvac">Desain RHVAC</a>
+        <a href="{base}/widgets">Katalog Widget</a>
         <a href="#docs">Dokumentasi</a>
         <a href="https://github.com/Naufaldo/Dash-Template" target="_blank" rel="noreferrer">GitHub Repository</a>
       </div>

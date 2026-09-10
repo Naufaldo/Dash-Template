@@ -21,6 +21,11 @@ const config = {
     paths: {
       base: process.env.BASE_PATH || ''
     },
+    prerender: {
+      handleHttpError: 'warn',
+      handleUnseenRoutes: 'warn',
+      handleMissingId: 'warn'
+    },
     alias: {
       '$lib': 'src/lib'
     }

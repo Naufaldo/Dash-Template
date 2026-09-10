@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
+  import { base } from '$app/paths';
   import { devicesStore } from '$lib/stores/devices';
   import { t } from '$lib/stores/locale';
   import ScadaGauge from '$lib/components/ScadaGauge.svelte';
@@ -12,7 +13,7 @@
 {#if device}
   <div class="device-detail-view">
     <div class="detail-header">
-      <a href="/dashboard" class="back-link">← {$t.filterAll}</a>
+      <a href="{base}/dashboard" class="back-link">← {$t.filterAll}</a>
       <h1 class="detail-title">{device.name} ({device.tag})</h1>
       <p class="detail-sub">{device.location} · {device.category}</p>
     </div>
@@ -47,7 +48,7 @@
     </div>
   </div>
 {:else}
-  <p>Perangkat tidak ditemukan. <a href="/dashboard">Kembali</a></p>
+  <p>Perangkat tidak ditemukan. <a href="{base}/dashboard">Kembali</a></p>
 {/if}
 
 <style>
