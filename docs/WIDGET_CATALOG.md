@@ -1,17 +1,29 @@
-# SCADA & IoT Widget Catalog
+# Industrial SCADA & IoT Widget Catalog
 
-This guide details all reusable Svelte components included in `src/lib/components/`.
+This comprehensive guide details all reusable Svelte components included in `src/lib/components/`.
+All components are fully responsive, support user-resizing via `WidgetContainer.svelte`, and strictly adhere to **Dark & Light** mode tokens.
+
+---
+
+## 📐 Layout & Resizability: `WidgetContainer.svelte`
+A wrapper providing responsive container queries, status indicator borders, title header, and interactive user size buttons (`S` Compact, `M` Standard, `W` Wide, `L` Large). Persists size to `localStorage`.
+
+```svelte
+<script>
+  import WidgetContainer from '$lib/components/WidgetContainer.svelte';
+</script>
+
+<WidgetContainer id="tank-01" title="STORAGE TANK 01" subtitle="TK-101" defaultSize="md" status="normal">
+  <!-- Any widget slot -->
+</WidgetContainer>
+```
 
 ---
 
 ## 1. Radial Arc Gauge (`ScadaGauge.svelte`)
-Industrial 240° sweep gauge reminiscent of Node-RED `ui_gauge` and panel meters.
+Industrial 240° sweep gauge with Setpoint notch, needle, and alarm zone fills.
 
 ```svelte
-<script>
-  import ScadaGauge from '$lib/components/ScadaGauge.svelte';
-</script>
-
 <ScadaGauge
   label="Temperature"
   value={-18.4}
@@ -21,108 +33,136 @@ Industrial 240° sweep gauge reminiscent of Node-RED `ui_gauge` and panel meters
   target={-20.0}
   alarmHigh={-15.0}
   alarmLow={-25.0}
-  quality="GOOD"
-  decimals={1}
   size="md"
-  type="primary"
 />
 ```
 
-### Props:
-- `label` (*string*): Measurement label (e.g., "Suhu Ruang", "Discharge Pressure").
-- `value` (*number | null*): Current process value (PV). Shows `--` when `null`.
-- `unit` (*string*): Engineering unit (e.g. `°C`, `bar`, `kW`, `RPM`, `m³/h`).
-- `min` / `max` (*number*): Lower and upper display bounds.
-- `target` (*number | null*): Setpoint (SP) notch marker position on dial.
-- `alarmHigh` / `alarmLow` (*number | null*): Warning & trip boundary markers.
-- `size` (*'sm' | 'md'*): Compact faceplate size (`sm`) or engineering detail size (`md`).
-
 ---
 
-## 2. Pilot Annunciator LED (`ScadaPilotLed.svelte`)
-Machined-bezel indicator lamp with radial jewel reflection.
+## 2. Vertical Tank Level Gauge (`ScadaTankLevel.svelte`)
+Industrial vessel indicator with liquid surface animation, LL / L / H / HH alarm switch ticks, and percentage/capacity readout.
 
 ```svelte
-<script>
-  import ScadaPilotLed from '$lib/components/ScadaPilotLed.svelte';
-</script>
-
-<!-- Running status lamp -->
-<ScadaPilotLed label="RUN" state="run" size="md" pulse={false} />
-
-<!-- Alarm flashing lamp -->
-<ScadaPilotLed label="TRIP" state="trip" size="md" pulse={true} />
-
-<!-- Inactive lamp -->
-<ScadaPilotLed label="AUX" state="off" size="sm" />
+<ScadaTankLevel
+  label="Liquid Receiver"
+  value={68.5}
+  unit="%"
+  highAlarm={80}
+  highHighAlarm={90}
+  lowAlarm={20}
+  lowLowAlarm={10}
+  fluidColor="#ff9100"
+  size="md"
+/>
 ```
 
-### States:
-- `run`: High-intensity green glow.
-- `aux`: Electric blue glow (auxiliary, defrost, bypass).
-- `warn`: Amber glow.
-- `trip`: Warning red with optional pulse animation.
-- `comm`: Cyan glow for data bus activity.
-- `off`: Muted grey lens with metallic bevel.
+---
+
+## 3. Digital LED Panel Meter (`ScadaDigitalMeter.svelte`)
+Heavy-duty bezel meter with corner screws, 7-segment monospace digits, HI/LO limit flags, and MIN/MAX peak hold reset.
+
+```svelte
+<ScadaDigitalMeter
+  label="LINE VOLTAGE L1-N"
+  value={221.4}
+  unit="VAC"
+  highLimit={245.0}
+  lowLimit={200.0}
+  colorTheme="green"
+/>
+```
 
 ---
 
-## 3. Pure SVG Mini Sparkline (`ScadaSparkline.svelte`)
-Lightweight 14-point rolling trajectory chart.
+## 4. Industrial Rotary Selector Switch (`ScadaRotarySwitch.svelte`)
+Knurled dial switch with 3 positions (`HAND` - `OFF` - `AUTO`) and realistic rotating knob.
 
 ```svelte
-<script>
-  import ScadaSparkline from '$lib/components/ScadaSparkline.svelte';
-</script>
+<ScadaRotarySwitch
+  label="BLOWER CONTROL"
+  bind:position={switchPos}
+/>
+```
 
-<ScadaSparkline
-  points={[-18.2, -18.4, -18.5, -18.3, -18.7, -18.4]}
+---
+
+## 5. ISA-18.1 Alarm Annunciator Panel (`ScadaAlarmAnnunciator.svelte`)
+8-window matrix panel with flashing unacknowledged states, acknowledge (`ACK`), `RESET`, and `TEST` pushbuttons.
+
+```svelte
+<ScadaAlarmAnnunciator />
+```
+
+---
+
+## 6. Industrial PID Loop Faceplate (`ScadaPIDFaceplate.svelte`)
+Honeywell/Emerson style PID loop controller with PV/SP dual bars, MV 0-100% output bar, deviation calculation, and AUTO / MANUAL / CAS mode toggles.
+
+```svelte
+<ScadaPIDFaceplate
+  tag="TIC-101"
+  description="Cold Storage Evaporator Valve Loop"
+  pv={-18.2}
+  sp={-20.0}
+  mv={64.0}
   unit="°C"
-  height={32}
-  color="var(--color-primary)"
+  min={-30}
+  max={0}
 />
 ```
 
 ---
 
-## 4. Graphic Linear Bar (`GraphicBar.svelte`)
-Horizontal level indicator with SP and alarm limit markers.
+## 7. Multi-Channel Bar Chart (`ScadaMultiBar.svelte`)
+Multi-channel comparative bar chart for 3-phase electrical loads (L1, L2, L3) or multi-zone temperature monitoring.
 
 ```svelte
-<script>
-  import GraphicBar from '$lib/components/GraphicBar.svelte';
-</script>
-
-<GraphicBar
-  label="Discharge Pressure"
-  value={14.2}
-  unit="bar"
-  min={0}
-  max={25}
-  target={13.5}
-  alarmHigh={20.0}
-  size="sm"
+<ScadaMultiBar
+  title="3-PHASE CURRENT DRAW"
+  channels={[
+    { label: 'L1 (R)', value: 18.4, unit: 'A', max: 30, color: '#ff4444' },
+    { label: 'L2 (S)', value: 17.9, unit: 'A', max: 30, color: '#ffbb00' },
+    { label: 'L3 (T)', value: 18.8, unit: 'A', max: 30, color: '#3388ff' }
+  ]}
 />
 ```
 
 ---
 
-## 5. Universal Equipment Faceplate (`DeviceFaceplate.svelte`)
-Standardized industrial equipment card with dual gauges, pilot lamps, and quick action links.
+## 8. Pilot Annunciator LED (`ScadaPilotLed.svelte`)
+Machined bezel indicator lamp with jewel reflection for `RUN`, `AUX`, `WARN`, `TRIP`, `COMM`, and `OFF`.
 
 ```svelte
-<script>
-  import DeviceFaceplate from '$lib/components/DeviceFaceplate.svelte';
-  export let device;
-</script>
+<ScadaPilotLed label="RUN" state="run" size="md" />
+<ScadaPilotLed label="TRIP" state="trip" size="md" pulse={true} />
+```
 
-<DeviceFaceplate
-  {device}
-  viewMode="scada"
-  canMoveLeft={true}
-  canMoveRight={true}
-  on:moveLeft={() => moveLeft(device.id)}
-  on:moveRight={() => moveRight(device.id)}
-  on:openMimic={() => openMimic(device)}
+---
+
+## 9. Mini Sparkline Trend (`ScadaSparkline.svelte`)
+Pure SVG rolling 14-point mini trend with min/max bounds.
+
+```svelte
+<ScadaSparkline points={[-18.2, -18.4, -18.5, -18.3]} unit="°C" height={36} />
+```
+
+---
+
+## 10. RHVAC Process Mimic (`RhvacProcessMimic.svelte`)
+Interactive animated P&ID diagram of a complete refrigeration & air conditioning cycle with CDU, Condenser, TXV, Evaporator, and real-time Superheat / Subcooling thermodynamic callouts.
+
+```svelte
+<RhvacProcessMimic
+  dischargePressure={15.4}
+  dischargeTemp={72.8}
+  condensingTemp={42.0}
+  liquidTemp={36.5}
+  suctionPressure={2.1}
+  suctionTemp={-12.4}
+  evaporatingTemp={-22.0}
+  roomTemp={-18.5}
+  roomSetpoint={-20.0}
+  compressorState={true}
+  mode="cooling"
 />
 ```

@@ -2,17 +2,21 @@
   import { onMount } from 'svelte';
 
   export let value: number | null = null;
+  export let points: number[] = [];
   export let unit: string = '°C';
   export let label: string = 'Trend';
   export let maxPoints: number = 14;
-  export let color: string = 'var(--color-temp, #38bdf8)';
+  export let color: string = 'var(--color-primary, #00c853)';
+  export let height: number = 32;
 
   let history: number[] = [];
 
-  // Seed history on mount based on current value
+  $: if (points && points.length > 0) {
+    history = points;
+  }
+
   onMount(() => {
-    if (value !== null) {
-      // Initialize with subtle variance around initial value
+    if (history.length === 0 && value !== null) {
       const base = value;
       history = Array.from({ length: maxPoints }, (_, i) => {
         const offset = (Math.sin(i / 2) * 0.15) - 0.05;
@@ -21,8 +25,7 @@
     }
   });
 
-  // Reactive update when value changes
-  $: if (value !== null) {
+  $: if (points.length === 0 && value !== null) {
     if (history.length === 0) {
       history = [value];
     } else {
@@ -33,30 +36,27 @@
     }
   }
 
-  // Calculate SVG path
   const width = 120;
-  const height = 32;
   const padding = 3;
 
   $: minVal = history.length > 0 ? Math.min(...history) : 0;
   $: maxVal = history.length > 0 ? Math.max(...history) : 1;
   $: range = maxVal - minVal > 0.01 ? maxVal - minVal : 1;
 
-  $: points = history.map((val, idx) => {
+  $: svgPoints = history.map((val, idx) => {
     const x = padding + (idx / Math.max(history.length - 1, 1)) * (width - padding * 2);
     const y = height - padding - ((val - minVal) / range) * (height - padding * 2);
     return { x: Number(x.toFixed(1)), y: Number(y.toFixed(1)) };
   });
 
-  $: linePath = points.length > 0
-    ? points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ')
+  $: linePath = svgPoints.length > 0
+    ? svgPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ')
     : '';
 
-  $: areaPath = points.length > 0
-    ? `${linePath} L ${points[points.length - 1].x} ${height} L ${points[0].x} ${height} Z`
+  $: areaPath = svgPoints.length > 0
+    ? `${linePath} L ${svgPoints[svgPoints.length - 1].x} ${height} L ${svgPoints[0].x} ${height} Z`
     : '';
 
-  // Trend direction
   $: trendDelta = history.length >= 3
     ? history[history.length - 1] - history[history.length - 3]
     : 0;
@@ -87,12 +87,10 @@
       </linearGradient>
     </defs>
 
-    <!-- Fill area -->
     {#if areaPath}
       <path d={areaPath} fill="url(#sparkline-grad)" />
     {/if}
 
-    <!-- Line stroke -->
     {#if linePath}
       <path
         d={linePath}
@@ -104,17 +102,16 @@
       />
     {/if}
 
-    <!-- Current value indicator dot at the end -->
-    {#if points.length > 0}
-      {@const last = points[points.length - 1]}
-      <circle cx={last.x} cy={last.y} r="2.5" fill={color} stroke="var(--bg-app, #0f172a)" stroke-width="1" />
+    {#if svgPoints.length > 0}
+      {@const last = svgPoints[svgPoints.length - 1]}
+      <circle cx={last.x} cy={last.y} r="2.5" fill={color} stroke="var(--bg-canvas, #0f172a)" stroke-width="1" />
     {/if}
   </svg>
 </div>
 
 <style>
   .scada-sparkline {
-    background: var(--bg-app, #0b0f19);
+    background: var(--bg-canvas, #0b0f19);
     border: 1px solid var(--border-subtle, #1e293b);
     border-radius: var(--radius-sm, 6px);
     padding: 4px 6px;
@@ -133,7 +130,7 @@
   .scada-sparkline__label {
     font-family: var(--font-mono, monospace);
     font-weight: 600;
-    color: var(--text-muted, #64748b);
+    color: var(--color-text-secondary, #64748b);
     text-transform: uppercase;
   }
 
@@ -146,12 +143,12 @@
 
   .scada-sparkline__trend {
     font-weight: 700;
-    color: var(--color-primary, #38bdf8);
+    color: var(--color-primary, #00c853);
   }
 
   .scada-sparkline__bounds {
     font-size: 8px;
-    color: var(--text-muted, #64748b);
+    color: var(--color-text-secondary, #64748b);
   }
 
   .scada-sparkline__svg {

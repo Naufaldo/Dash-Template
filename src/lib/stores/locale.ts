@@ -7,6 +7,9 @@ export const translations = {
   id: {
     brand: 'SCADA IoT Dashboard',
     tagline: 'Template Sistem Kendali & Telemetri Industri',
+    navDashboard: 'Dashboard Utama',
+    navRhvac: 'Desain RHVAC',
+    navWidgets: 'Katalog Widget',
     masterBanner: 'Pusat Kendali SCADA Terpusat',
     busHealth: 'Bus Komunikasi RS485 / MQTT',
     activeNodes: 'Node Aktif',
@@ -26,6 +29,7 @@ export const translations = {
     viewModeScada: '🎛️ Faceplate SCADA',
     viewModeBars: '📊 Level Bar Kompak',
     simBadge: 'Data Simulasi (Aktif)',
+    resizeWidget: 'Ubah Ukuran Widget',
     pilotRun: 'RUN',
     pilotAux: 'AUX',
     pilotAlarm: 'ALARM',
@@ -38,11 +42,31 @@ export const translations = {
       warning: 'Peringatan',
       critical: 'Kritis / Trip',
       offline: 'Offline'
+    },
+    rhvac: {
+      title: 'Desain Sistem Refrigerasi & Tata Udara (RHVAC)',
+      subtitle: 'Diagram P&ID Interaktif dengan Aliran Refrigeran & Kalkulasi Termodinamika',
+      discharge: 'Tekanan & Suhu Discharge',
+      suction: 'Tekanan & Suhu Suction',
+      superheat: 'Superheat (SH)',
+      subcooling: 'Subcooling (SC)',
+      roomTemp: 'Suhu Cold Room',
+      compressor: 'Kompresor',
+      condenser: 'Kondensor',
+      evaporator: 'Evaporator',
+      txv: 'Katup Ekspansi (TXV)',
+      receiver: 'Receiver Cairan',
+      modeCooling: 'Pendinginan Normal',
+      modeDefrost: 'Siklus Defrost',
+      modeStandby: 'Standby / Siaga'
     }
   },
   en: {
     brand: 'SCADA IoT Dashboard',
     tagline: 'Industrial Control & Telemetry Template',
+    navDashboard: 'Main Dashboard',
+    navRhvac: 'RHVAC Design',
+    navWidgets: 'Widget Catalog',
     masterBanner: 'Central SCADA Control Center',
     busHealth: 'RS485 / MQTT Comm Bus',
     activeNodes: 'Active Nodes',
@@ -62,6 +86,7 @@ export const translations = {
     viewModeScada: '🎛️ SCADA Faceplates',
     viewModeBars: '📊 Compact Level Bars',
     simBadge: 'Simulation Mode',
+    resizeWidget: 'Resize Widget',
     pilotRun: 'RUN',
     pilotAux: 'AUX',
     pilotAlarm: 'ALARM',
@@ -74,6 +99,23 @@ export const translations = {
       warning: 'Warning',
       critical: 'Critical / Trip',
       offline: 'Offline'
+    },
+    rhvac: {
+      title: 'Refrigeration & HVAC System Design',
+      subtitle: 'Interactive P&ID Process Flow with Refrigerant Cycle & Thermodynamic Telemetry',
+      discharge: 'Discharge Press & Temp',
+      suction: 'Suction Press & Temp',
+      superheat: 'Superheat (SH)',
+      subcooling: 'Subcooling (SC)',
+      roomTemp: 'Cold Room Temperature',
+      compressor: 'Compressor',
+      condenser: 'Condenser',
+      evaporator: 'Evaporator',
+      txv: 'Expansion Valve (TXV)',
+      receiver: 'Liquid Receiver',
+      modeCooling: 'Active Cooling',
+      modeDefrost: 'Defrost Cycle',
+      modeStandby: 'Standby Mode'
     }
   }
 };

@@ -1,82 +1,225 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import '../app.css';
-  import { themeStore } from '$lib/stores/theme';
+  import { onMount } from 'svelte';
   import { localeStore, t } from '$lib/stores/locale';
-  import { devicesStore } from '$lib/stores/devices';
+  import { themeStore } from '$lib/stores/theme';
+  import { layoutStore } from '$lib/stores/layout';
+  import { page } from '$app/stores';
 
   onMount(() => {
-    themeStore.init();
     localeStore.init();
-    devicesStore.initSimulation();
+    themeStore.init();
+    layoutStore.init();
   });
 </script>
 
-<svelte:head>
-  <title>{$t.brand} — {$t.tagline}</title>
-</svelte:head>
-
-<div class="scada-app">
-  <header class="scada-topbar">
-    <div class="topbar-left">
-      <a href="/" class="brand-link">
-        <svg viewBox="0 0 32 32" width="22" height="22" fill="none">
-          <circle cx="16" cy="16" r="14" stroke="var(--color-primary)" stroke-width="2.5" />
-          <circle cx="16" cy="16" r="5" fill="var(--status-online)" />
-        </svg>
-        <span class="brand-text">{$t.brand}</span>
+<div class="app-layout">
+  <header class="topbar">
+    <div class="topbar__left">
+      <a href="/" class="brand">
+        <span class="brand__icon">⚡</span>
+        <div>
+          <span class="brand__title">{$t.brand}</span>
+          <span class="brand__tagline">{$t.tagline}</span>
+        </div>
       </a>
-      <span class="sim-badge">{$t.simBadge}</span>
+
+      <!-- Navigation Tabs -->
+      <nav class="nav-tabs" aria-label="Main Navigation">
+        <a href="/" class="nav-tab" class:nav-tab--active={$page.url.pathname === '/'}>
+          📊 {$t.navDashboard}
+        </a>
+        <a href="/rhvac" class="nav-tab" class:nav-tab--active={$page.url.pathname.startsWith('/rhvac')}>
+          ❄️ {$t.navRhvac}
+        </a>
+        <a href="/widgets" class="nav-tab" class:nav-tab--active={$page.url.pathname.startsWith('/widgets')}>
+          🎛️ {$t.navWidgets}
+        </a>
+      </nav>
     </div>
 
-    <div class="topbar-right">
-      <button type="button" class="topbar-btn" on:click={themeStore.toggle} title="Toggle Dark/Light Mode">
-        ☀️/🌙
+    <div class="topbar__right">
+      <span class="sim-badge" title="Telemetry generated automatically every 4s">
+        <span class="sim-dot"></span>
+        {$t.simBadge}
+      </span>
+
+      <!-- Language Switcher -->
+      <button
+        type="button"
+        class="ctrl-btn"
+        on:click={localeStore.toggle}
+        aria-label="Switch Language"
+        title="Toggle Indonesian / English"
+      >
+        <span class="ctrl-btn__icon">🌐</span>
+        <span class="ctrl-btn__text">{$localeStore === 'id' ? 'ID' : 'EN'}</span>
       </button>
-      <button type="button" class="topbar-btn" on:click={localeStore.toggle} title="Toggle Bahasa / English">
-        🌐 {$localeStore.toUpperCase()}
+
+      <!-- Theme Switcher (Dark/Light) -->
+      <button
+        type="button"
+        class="ctrl-btn"
+        on:click={themeStore.toggle}
+        aria-label="Toggle Theme"
+        title="Toggle Dark / Light Mode"
+      >
+        <span class="ctrl-btn__icon">{$themeStore === 'dark' ? '🌙' : '☀️'}</span>
+        <span class="ctrl-btn__text">{$themeStore === 'dark' ? 'DARK' : 'LIGHT'}</span>
       </button>
     </div>
   </header>
 
-  <main class="scada-main">
+  <main class="main-content">
     <slot />
   </main>
 </div>
 
 <style>
-  .scada-app { min-height: 100vh; display: flex; flex-direction: column; }
-  .scada-topbar {
-    height: 52px;
+  .app-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-canvas);
+    color: var(--color-text-primary);
+  }
+
+  .topbar {
+    height: 56px;
     background: var(--bg-surface);
     border-bottom: 1px solid var(--border-subtle);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 var(--space-md);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: var(--shadow-sm);
   }
-  .topbar-left { display: flex; align-items: center; gap: 12px; }
-  .brand-link { display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit; }
-  .brand-text { font-weight: 700; font-size: 15px; font-family: var(--font-mono); }
-  .sim-badge {
-    font-size: 11px;
-    font-family: var(--font-mono);
+
+  .topbar__left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .brand__icon {
+    font-size: 20px;
+    color: var(--color-primary);
+  }
+
+  .brand__title {
+    font-size: var(--font-md);
+    font-weight: 800;
+    display: block;
+    line-height: 1.1;
+  }
+
+  .brand__tagline {
+    font-size: 10px;
+    color: var(--color-text-secondary);
+    display: block;
+  }
+
+  .nav-tabs {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .nav-tab {
+    text-decoration: none;
+    font-size: var(--font-xs);
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+  }
+
+  .nav-tab:hover {
+    color: var(--color-text-primary);
+    background: var(--border-subtle);
+  }
+
+  .nav-tab--active {
     color: var(--color-primary);
     background: var(--color-primary-subtle);
-    padding: 2px 8px;
-    border-radius: 4px;
-    border: 1px solid var(--border-subtle);
   }
-  .topbar-right { display: flex; align-items: center; gap: 8px; }
-  .topbar-btn {
-    background: var(--bg-raised);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-primary);
-    border-radius: var(--radius-sm);
-    padding: 4px 10px;
-    font-size: 12px;
+
+  .topbar__right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .sim-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--color-primary-subtle);
+    color: var(--color-primary);
+    font-size: var(--font-xs);
     font-weight: 600;
-    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-primary);
   }
-  .scada-main { flex: 1; padding: 20px; max-width: 1400px; width: 100%; margin: 0 auto; }
+
+  .sim-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  .ctrl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-canvas);
+    border: 1px solid var(--border-subtle);
+    color: var(--color-text-primary);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: var(--font-xs);
+    font-weight: 700;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .ctrl-btn:hover {
+    background: var(--border-subtle);
+    border-color: var(--border-strong);
+  }
+
+  .main-content {
+    flex: 1;
+    padding: var(--space-md);
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 768px) {
+    .brand__tagline { display: none; }
+    .sim-badge { display: none; }
+    .topbar__left { gap: var(--space-sm); }
+  }
 </style>

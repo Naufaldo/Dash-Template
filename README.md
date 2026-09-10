@@ -13,6 +13,20 @@
 
 ## ⚡ Key Highlights & Features
 
+- ❄️ **Dedicated RHVAC Design Template (`/rhvac`)**: Complete P&ID diagram with outdoor CDU, cold room enclosure, evaporator coils, TXV valve, animated refrigerant flow, and real-time Superheat / Subcooling calculations.
+- 📐 **Interactive User Resizability**: Every widget can be resized by the operator (`S` Compact, `M` Standard, `W` Wide 2x1, `L` Large 2x2) with automatic `localStorage` persistence.
+- 🎛️ **Comprehensive Industrial SCADA Widget Suite**:
+  - **Radial Arc Gauges 240°** (`ScadaGauge.svelte`)
+  - **Vertical Cylindrical Tank Level** (`ScadaTankLevel.svelte`)
+  - **Digital Panel Meters** (`ScadaDigitalMeter.svelte`)
+  - **Industrial Rotary Switches** (`ScadaRotarySwitch.svelte`)
+  - **ISA-18.1 Alarm Annunciators** (`ScadaAlarmAnnunciator.svelte`)
+  - **Industrial PID Faceplates** (`ScadaPIDFaceplate.svelte`)
+  - **Multi-Channel Bar Charts** (`ScadaMultiBar.svelte`)
+  - **Pilot Annunciator LEDs** (`ScadaPilotLed.svelte`)
+  - **Pure SVG Rolling Sparklines** (`ScadaSparkline.svelte`)
+- 🌐 **100% Dual Theme & Dual Language**: Instant switching between Dark and Light mode, as well as Indonesian and English.
+
 - 🎯 **Node-RED `ui_gauge` Style Radial Arc Gauges**: 240° sweep arc with Setpoint (SP) notch, dynamic needle pointer, alarm zone color fills, and tabular monospace readouts.
 - 💡 **Industrial Annunciator Pilot LED Lamps**: Heavy-duty metallic bezel indicator lamps (`RUN`, `AUX`, `WARN`, `TRIP`, `COMM`, `OFF`) with jewel lens reflections.
 - 📈 **Pure SVG Rolling Sparklines**: 14-point mini trends with min/max boundary indicators and delta slope calculation.

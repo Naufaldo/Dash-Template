@@ -1,8 +1,9 @@
 <script lang="ts">
   export let label: string;
-  export let state: 'run' | 'warn' | 'trip' | 'comm' | 'off' = 'off';
+  export let state: 'run' | 'aux' | 'warn' | 'trip' | 'comm' | 'off' = 'off';
   export let size: 'sm' | 'md' = 'sm';
   export let tooltip: string = '';
+  export let pulse: boolean = false;
 
   $: colorMap = {
     run: {
@@ -10,6 +11,12 @@
       glow: 'rgba(16, 185, 129, 0.45)',
       ring: '#059669',
       statusText: 'RUN'
+    },
+    aux: {
+      core: '#2563eb',
+      glow: 'rgba(37, 99, 235, 0.5)',
+      ring: '#1d4ed8',
+      statusText: 'AUX'
     },
     warn: {
       core: '#f59e0b',
@@ -44,7 +51,7 @@
   class="scada-pilot scada-pilot--{size} scada-pilot--{state}"
   title={tooltip || `${label}: ${activeColor.statusText}`}
   role="status"
-  aria-label="{label} is {activeColor.statusText}"
+  aria-label="${label} is ${activeColor.statusText}"
 >
   <div class="scada-pilot__lamp">
     <svg viewBox="0 0 24 24" class="scada-pilot__svg" aria-hidden="true">
@@ -77,7 +84,7 @@
         r="7"
         fill="url(#pilot-jewel-{state})"
         class="pilot-lens"
-        class:pilot-lens--pulse={state === 'trip'}
+        class:pilot-lens--pulse={pulse || state === 'trip'}
         style="filter: {state !== 'off' ? `drop-shadow(0 0 4px ${activeColor.glow})` : 'none'};"
       />
     </svg>
@@ -122,23 +129,13 @@
     white-space: nowrap;
   }
 
-  .scada-pilot--run .scada-pilot__label {
-    color: var(--status-online, #10b981);
-  }
+  .scada-pilot--run .scada-pilot__label { color: var(--status-online, #10b981); }
+  .scada-pilot--aux .scada-pilot__label { color: #3b82f6; }
+  .scada-pilot--warn .scada-pilot__label { color: var(--status-warning, #f59e0b); }
+  .scada-pilot--trip .scada-pilot__label { color: var(--status-critical, #ef4444); }
+  .scada-pilot--comm .scada-pilot__label { color: #06b6d4; }
 
-  .scada-pilot--warn .scada-pilot__label {
-    color: var(--status-warning, #f59e0b);
-  }
-
-  .scada-pilot--trip .scada-pilot__label {
-    color: var(--status-critical, #ef4444);
-  }
-
-  .scada-pilot--comm .scada-pilot__label {
-    color: #06b6d4;
-  }
-
-  /* Pulsing animation for critical trips / faults */
+  /* Pulsing animation */
   .pilot-lens--pulse {
     animation: pilot-blink 1s ease-in-out infinite;
   }
