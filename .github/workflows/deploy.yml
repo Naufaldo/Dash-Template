@@ -16,6 +16,9 @@ concurrency:
   group: 'pages'
   cancel-in-progress: true
 
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: 'true'
+
 jobs:
   build-and-deploy:
     environment:
@@ -26,16 +29,13 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
-      - name: Setup Node.js 20
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'pnpm'
+          node-version: 22
+
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
