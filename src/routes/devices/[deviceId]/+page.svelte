@@ -12,7 +12,7 @@
 {#if device}
   <div class="device-detail-view">
     <div class="detail-header">
-      <a href="/" class="back-link">← {$t.filterAll}</a>
+      <a href="/dashboard" class="back-link">← {$t.filterAll}</a>
       <h1 class="detail-title">{device.name} ({device.tag})</h1>
       <p class="detail-sub">{device.location} · {device.category}</p>
     </div>
@@ -47,7 +47,7 @@
     </div>
   </div>
 {:else}
-  <p>Perangkat tidak ditemukan. <a href="/">Kembali</a></p>
+  <p>Perangkat tidak ditemukan. <a href="/dashboard">Kembali</a></p>
 {/if}
 
 <style>

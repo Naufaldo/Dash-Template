@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-09-10
+
+### Added
+- **GitHub Pages CI/CD Pipeline**: `.github/workflows/deploy.yml` automated workflow for building and deploying static assets to GitHub Pages with `@sveltejs/adapter-static`, `BASE_PATH` detection, and `.nojekyll` support.
+- **Dual Adapter Architecture**: Dynamic switching between `@sveltejs/adapter-node` (production Docker/Node server) and `@sveltejs/adapter-static` (GitHub Pages static export with `404.html` SPA routing).
+
+### Changed
+- **High-Legibility Landing Page Sizing**:
+  - Significantly enlarged typography across all sections (hero title to 54px, headings to 38px, body copy to 16px, monospace readouts to 16px-18px).
+  - Increased button padding, touch targets, terminal code blocks, and interactive control sliders for effortless reading on desktop and tablet control monitors.
+- **Performance & Initial Load Optimization**:
+  - Streamlined first-paint rendering to prevent visual clutter and heavy blocking intervals on initial landing page load.
+  - Eliminated unnecessary continuous client intervals during initial visit.
+
+## [1.2.0] - 2026-09-10
+
+### Added
+- **Production-Grade Landing Page (`/`)**:
+  - Industrial hero header with high-contrast tabular monospace typography, 3 CTAs, and a 1-click terminal quickstart command box.
+  - Live Telemetry Health Strip showing active nodes, communication bus activity, scan rates, and ISA-18.1 alarm status.
+  - Engineering Highlights breakdown detailing pure SVG 60 FPS performance, ISA-18.1 alarm architecture, 240° Node-RED gauges, and edge readiness.
+  - Grounded System Topology pipeline diagram (Archify pillar) linking field sensors, transport brokers, ingestion store, and SCADA UI.
+  - Interactive Live Demo Workbench with disturbance presets (Normal, High Temp Warning, Overpressure Trip, Bus Comm Loss), interactive PV/SP and fluid tank sliders, 3-position rotary mode switch, and responsive pilot LED lamps.
+  - Integrated Engineering Documentation Hub featuring interactive tabbed guides for Quick Start, Store Architecture, Hardware Integration (Modbus/MQTT), Widget API & copyable code snippets, RHVAC thermodynamics, and theme tokens.
+- **Route Restructuring & Navigation**:
+  - Moved the master SCADA control room view to `/dashboard` (`src/routes/dashboard/+page.svelte`).
+  - Added `Beranda` (`/`) and `Dokumentasi` (`/#docs`) tabs in the sticky topbar navigation.
+  - Updated device detail backlinks to point directly to `/dashboard`.
+- **Extended Bilingual Dictionary**:
+  - Added complete Indonesian (`id`) and English (`en`) dictionary keys for the entire landing page, interactive demo controls, and documentation tabs in `src/lib/stores/locale.ts`.
+
 ## [1.1.0] - 2026-09-10
 
 ### Added

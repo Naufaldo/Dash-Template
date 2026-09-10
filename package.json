@@ -1,6 +1,6 @@
 {
   "name": "dash-template",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,6 +13,7 @@
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.3.1",
     "@sveltejs/adapter-node": "^5.2.11",
+    "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/kit": "^2.7.0",
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
     "svelte": "^5.0.0",

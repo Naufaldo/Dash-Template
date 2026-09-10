@@ -27,6 +27,9 @@
       <!-- Navigation Tabs -->
       <nav class="nav-tabs" aria-label="Main Navigation">
         <a href="/" class="nav-tab" class:nav-tab--active={$page.url.pathname === '/'}>
+          🏠 {$t.navHome}
+        </a>
+        <a href="/dashboard" class="nav-tab" class:nav-tab--active={$page.url.pathname.startsWith('/dashboard')}>
           📊 {$t.navDashboard}
         </a>
         <a href="/rhvac" class="nav-tab" class:nav-tab--active={$page.url.pathname.startsWith('/rhvac')}>
@@ -34,6 +37,9 @@
         </a>
         <a href="/widgets" class="nav-tab" class:nav-tab--active={$page.url.pathname.startsWith('/widgets')}>
           🎛️ {$t.navWidgets}
+        </a>
+        <a href="/#docs" class="nav-tab">
+          📖 {$t.navDocs}
         </a>
       </nav>
     </div>
@@ -134,6 +140,12 @@
     display: flex;
     align-items: center;
     gap: 4px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .nav-tab {
